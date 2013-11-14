@@ -1,0 +1,10 @@
+[core]
+    editor = vim
+[user]
+    name = David Jonas
+    email = djonas@noip.com
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    lga = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+[push]
+    default = upstream
