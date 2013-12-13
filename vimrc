@@ -5,8 +5,19 @@
 " 
 "
 set nocompatible               " be iMproved
-filetype off                   " required!
 
+""" Automatically setting up Vundle, taken from
+""" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
+let has_vundle=1
+if !filereadable($HOME."/.vim/bundle/vundle/README.md")
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p $HOME/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle $HOME/.vim/bundle/vundle
+    let has_vundle=0
+endif
+
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -41,6 +52,13 @@ Bundle 'surround.vim'
 Bundle 'neocomplcache'
 " Bundle 'PIV'
 Bundle 'Distinguished'
+
+""" Installing plguins the first time
+if has_vundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
 
 
 filetype plugin indent on     " required!
