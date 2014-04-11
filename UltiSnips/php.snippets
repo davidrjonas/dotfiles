@@ -11,6 +11,16 @@ class `!p snip.rv=snip.basename`
 }
 endsnippet
 
+snippet intf "PHP interface file declaration template" !b
+<?php namespace Noip\\${1:Package};
+
+interface `!p snip.rv=snip.basename`
+{
+    public function ${2:methodName}();
+    $0
+}
+endsnippet
+
 snippet testcase "PHPUnit TestCase declaration template" !b
 <?php namespace $1\Tests;
 
@@ -18,6 +28,10 @@ use Mockery as m;
 
 class `!p snip.rv=snip.basename` extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+    }
+
     public function tearDown()
     {
         m::close();
