@@ -5,6 +5,7 @@
 " 
 "
 set nocompatible               " be iMproved
+filetype off
 
 """ Automatically setting up Vundle, taken from
 """ http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
@@ -17,7 +18,6 @@ if !filereadable($HOME."/.vim/bundle/vundle/README.md")
     let has_vundle=0
 endif
 
-filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -30,18 +30,13 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'tpope/vim-fugitive'
 Bundle 'extradite.vim'
-Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Bundle 'tpope/vim-rails.git'
-" Bundle 'Lokaltog/vim-powerline'
 Bundle 'bling/vim-airline'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-markdown'
-"Bundle 'ervandew/supertab'
-""undle 'mikehaertl/pdv-standalone'
+Bundle 'mikehaertl/pdv-standalone'
 " vim-scripts repos
 Bundle 'UltiSnips'
 Bundle 'surround.vim'
@@ -52,6 +47,7 @@ Bundle 'surround.vim'
 Bundle 'neocomplcache'
 " Bundle 'PIV'
 Bundle 'Distinguished'
+Bundle 'joonty/vdebug.git'
 
 """ Installing plguins the first time
 if has_vundle == 0
@@ -87,6 +83,7 @@ set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 set path=.,/home/staging/php
 set laststatus=2
 set expandtab
+set vb
 " set list
 " set listchars=trail:~
 
@@ -119,4 +116,13 @@ set listchars=tab:▸\ ,eol:\
 hi Pmenu ctermbg=darkgray
 hi PmenuSel ctermbg=darkcyan cterm=bold
 
+let mapleader = ","
 
+nmap <Leader>t :!(clear && phpunit --stop-on-failure %)<cr>
+nmap <Leader>l :!php -l %<cr>
+nmap <Leader>x :%s/\s\+$//g<cr>
+nmap <Leader>f gqis
+nmap <Leader>r :!php --rf <cword><cr>
+nmap <Leader>b :b#<cr>
+nmap <Leader>pd :!(phpunit --stop-on-failure % > /dev/null &)<cr><F5>
+imap t> $this->
