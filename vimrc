@@ -89,7 +89,7 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_auto_select = 1
 
 set list
-set listchars=tab:▸\ ,eol:\
+set listchars=tab:▸\ ,eol:\ 
 
 let g:syntastic_php_checkers=['php']
 
