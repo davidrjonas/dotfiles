@@ -1,13 +1,21 @@
-[core]
-    editor = vim
 [user]
     name = David Jonas
     email = djonas@noip.com
+[core]
+    editor = /usr/bin/vim
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-    lga = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    st = status
+    lg = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    lga = log --all --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    cm = commit -m
+    out = log origin..HEAD
+    unstage = reset HEAD --
+    exec = "!exec "
+    last = log -1 HEAD
     co = checkout
-[push]
-    default = upstream
 [color]
-    ui = true
+    ui = auto
+    interactive = true
+[push]
+    default = current
+
