@@ -36,6 +36,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'mikehaertl/pdv-standalone'
 Bundle 'joonty/vdebug.git'
+Bundle 'shawncplus/phpcomplete.vim'
+Bundle '2072/PHP-Indenting-for-VIm'
+Bundle 'yaifa.vim'
 " vim-scripts repos
 Bundle 'UltiSnips'
 Bundle 'surround.vim'
@@ -118,6 +121,9 @@ highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 highlight Pmenu    ctermbg=darkgray
 highlight PmenuSel ctermbg=darkcyan cterm=bold
 
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 let mapleader = ","
 
 nmap <Leader>t :!(clear && phpunit --stop-on-failure %)<cr>
@@ -127,3 +133,4 @@ nmap <Leader>f gqis
 nmap <Leader>r :!php --rf <cword><cr>
 nmap <Leader>b :b#<cr>
 imap t> $this->
+nmap <Leader><Leader> :NERDTreeToggle<cr>
