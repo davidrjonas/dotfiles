@@ -17,5 +17,5 @@
     ui = auto
     interactive = true
 [push]
-    default = current
+    default = simple
 
