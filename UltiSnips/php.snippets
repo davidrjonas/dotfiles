@@ -5,7 +5,6 @@ class `!p snip.rv=snip.basename`
 {
     public function ${2:methodName}()
     {
-        ${3:// code...}
     }
     $0
 }
@@ -24,8 +23,6 @@ endsnippet
 snippet testcase "PHPUnit TestCase declaration template" !b
 <?php namespace $1\Tests;
 
-use Mockery as m;
-
 class `!p snip.rv=snip.basename` extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
@@ -34,7 +31,6 @@ class `!p snip.rv=snip.basename` extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        m::close();
     }
 
     public function test$2()
@@ -47,54 +43,47 @@ endsnippet
 snippet test "PHPUnit TestCase function declaration template" !b
 public function test${1:Something}()
 {
-    ${2:// code...}
 }
 endsnippet
 
 snippet pub "Public function" !b
-public function ${1:name}(${2:$param})
+public function ${1:name}()
 {
-    ${VISUAL}${3:return null;}
 }
 $0
 endsnippet
 
 snippet pro "Protected function" !b
-protected function ${1:name}(${2:$param})
+protected function ${1:name}()
 {
-    ${VISUAL}${3:return null;}
 }
 $0
 endsnippet
 
 snippet pri "Private function" !b
-private function ${1:name}(${2:$param})
+private function ${1:name}()
 {
-    ${VISUAL}${3:return null;}
 }
 $0
 endsnippet
 
 snippet pubs "Public static function" !b
-public static function ${1:name}(${2:$param})
+public static function ${1:name}()
 {
-    ${VISUAL}${3:return null;}
 }
 $0
 endsnippet
 
 snippet pros "Protected static function" !b
-protected static function ${1:name}(${2:$param})
+protected static function ${1:name}()
 {
-    ${VISUAL}${3:return null;}
 }
 $0
 endsnippet
 
 snippet pris "Private static function" !b
-private static function ${1:name}(${2:$param})
+private static function ${1:name}()
 {
-    ${VISUAL}${3:return null;}
 }
 $0
 endsnippet
