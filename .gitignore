@@ -1,0 +1,6 @@
+/wireshark/recent*
+/psysh/*history*
+/psysh/update_check.json
+/nvim/autoload/plug.vim
+/nvim/plugged
+/nvim/.*

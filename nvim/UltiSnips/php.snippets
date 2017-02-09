@@ -1,0 +1,89 @@
+snippet classf "PHP class file declaration template" !b
+<?php namespace Noip\\${1:Package};
+
+class `!p snip.rv=snip.basename`
+{
+    public function ${2:methodName}()
+    {
+    }
+    $0
+}
+endsnippet
+
+snippet intf "PHP interface file declaration template" !b
+<?php namespace Noip\\${1:Package};
+
+interface `!p snip.rv=snip.basename`
+{
+    public function ${2:methodName}();
+    $0
+}
+endsnippet
+
+snippet testcase "PHPUnit TestCase declaration template" !b
+<?php namespace $1\Tests;
+
+class `!p snip.rv=snip.basename` extends \PHPUnit_Framework_TestCase
+{
+    public function setUp()
+    {
+    }
+
+    public function tearDown()
+    {
+    }
+
+    public function test$2()
+    {
+        $3
+    }$0
+}
+endsnippet
+
+snippet test "PHPUnit TestCase function declaration template" !b
+public function test${1:Something}()
+{
+}
+endsnippet
+
+snippet pub "Public function" !b
+public function ${1:name}()
+{
+}
+$0
+endsnippet
+
+snippet pro "Protected function" !b
+protected function ${1:name}()
+{
+}
+$0
+endsnippet
+
+snippet pri "Private function" !b
+private function ${1:name}()
+{
+}
+$0
+endsnippet
+
+snippet pubs "Public static function" !b
+public static function ${1:name}()
+{
+}
+$0
+endsnippet
+
+snippet pros "Protected static function" !b
+protected static function ${1:name}()
+{
+}
+$0
+endsnippet
+
+snippet pris "Private static function" !b
+private static function ${1:name}()
+{
+}
+$0
+endsnippet

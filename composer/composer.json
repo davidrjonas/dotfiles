@@ -1,0 +1,6 @@
+{
+    "require": {
+        "psy/psysh": "@stable",
+        "codegyre/robo": "^0.7.2"
+    }
+}
