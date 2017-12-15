@@ -3,7 +3,7 @@
 " PlugInstall PlugUpdate
 call plug#begin()
 
-Plug 'badwolf'
+Plug 'sjl/badwolf'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
@@ -14,25 +14,26 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dietsche/vim-lastplace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/syntastic'
-Plug 'yaifa.vim'
+Plug 'vim-scripts/yaifa.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mhinz/vim-signify'
-Plug 'UltiSnips'
-Plug 'extradite.vim'
+Plug 'SirVer/UltiSnips' | Plug 'honza/vim-snippets'
+Plug 'int3/vim-extradite'
 Plug 'kien/ctrlp.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc', {'do' : 'make'}
 Plug 'vimwiki/vimwiki'
+Plug 'fntlnz/atags.vim'
 "Plug 'joonty/vdebug.git'
 "Plugin 'Tagbar'
 
 " == languages ==
-Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
+"Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 " update to syntax file
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'm2mdas/phpcomplete-extended-laravel', { 'for': 'php' }
-Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
+"Plug 'm2mdas/phpcomplete-extended-laravel', { 'for': 'php' }
+"Plug 'm2mdas/phpcomplete-extended-symfony', { 'for': 'php' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -93,12 +94,21 @@ match ExtraWhitespace /\s\+$/
 
 imap jk <Esc>
 imap jj <Esc>
+
+" Move line up and down
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" Shift in insert mode
+vnoremap > >gv
+vnoremap < <gv
+
+imap <C-l> <C-t>
+imap <C-h> <C-d>
 
 let mapleader = ","
 
@@ -111,8 +121,7 @@ nnoremap <Leader>d :echom system("date")<cr>
 "nmap <Leader><Leader> :TagbarToggle<cr>
 nnoremap <Leader>p :set invpaste<cr>
 nnoremap <Leader>z 1z=
-nnoremap z<Leader> 1z=
-nnoremap <C-l> :mode<cr>
+nnoremap <Leader>m :mode<cr>
 xnoremap <Leader>s <esc>:'<,'>:w !gpg --armor --clearsign<CR>
 nnoremap <Leader>s :w !gpg --armor --clearsign<CR>
 xnoremap <Leader>ge <esc>:'<,'>:w !gpg --encrypt --sign --armor --output -<CR>
@@ -121,10 +130,26 @@ nnoremap <Leader>ge :w !gpg --encrypt --sign --armor --output -<CR>
 iabbrev teh the
 
 " php
-au FileType php nmap <Leader>t :!(clear && phpunit --stop-on-failure %)<cr>
+function! PHPUnitTestFile()
+    let l:filename = expand('%')
+    if l:filename !~# 'Test\.php$'
+        let l:filename = substitute(l:filename, '\.php$', 'Test.php', '')
+    endif
+    return substitute(l:filename, 'src', 'tests', '')
+endfunction
+function! RunPhpUnit()
+    return ':!vendor/bin/phpunit --stop-on-failure ' . PHPUnitTestFile() . "\<CR>"
+endfunction
+function! JumpToPHPUnittest()
+    return ':e ' . PHPUnitTestFile() . "\<CR>"
+endfunction
+"au FileType php nmap <Leader>t :!(clear && phpunit --stop-on-failure %)<cr>
+au FileType php nmap <expr> <leader>t RunPhpUnit()
+au FileType php nmap <expr> <leader>j JumpToPHPUnittest()
 au FileType php nmap <Leader>l :!(php -l %)<cr>
 au FileType php nmap <Leader>r :!php --rf <cword><cr>
-au FileType php set omnifunc=phpcomplete_extended#CompletePHP
+"au FileType php set omnifunc=phpcomplete_extended#CompletePHP
+au FileType php set omnifunc=
 au FileType php let g:PHP_vintage_case_default_indent = 1
 let g:deoplete#omni#input_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
 " defaults to composer.phar
@@ -140,6 +165,15 @@ endfunction
 augroup phpSyntaxOverride
   autocmd!
   autocmd FileType php call PhpSyntaxOverride()
+augroup END
+au FileType php let g:atags_build_commands_list = [
+    \ 'ag --php -g "" | ctags -L - --fields=+l -f tags.tmp',
+    \ 'awk "length($0) < 400" tags.tmp > tags',
+    \ 'rm -f tags.tmp'
+    \ ]
+augroup phpGenTags
+  autocmd!
+  autocmd FileType php au BufWritePost * call atags#generate()
 augroup END
 
 " go
@@ -168,3 +202,9 @@ let g:syntastic_javascript_checkers=[]
 
 " markdown
 au FileType markdown setlocal spell
+
+" yaml
+autocmd Filetype yaml setlocal ts=2 sw=2 sts=0 expandtab
+
+"let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
