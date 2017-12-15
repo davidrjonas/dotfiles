@@ -1,6 +1,7 @@
 {
     "require": {
         "psy/psysh": "@stable",
-        "codegyre/robo": "^0.7.2"
+        "codegyre/robo": "^0.7.2",
+        "davidrjonas/composer-lock-diff": "^1.0@dev"
     }
 }
