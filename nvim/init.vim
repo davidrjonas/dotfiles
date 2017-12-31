@@ -24,8 +24,8 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc', {'do' : 'make'}
 Plug 'vimwiki/vimwiki'
 Plug 'fntlnz/atags.vim'
+Plug 'godlygeek/tabular'
 "Plug 'joonty/vdebug.git'
-"Plugin 'Tagbar'
 
 " == languages ==
 "Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
@@ -41,6 +41,7 @@ Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make'}
 "Plug 'derekwyatt/vim-scala'
@@ -194,7 +195,11 @@ au FileType clojure nmap <Leader>r K<cr>
 " rust
 let g:rustfmt_autosave = 1
 au FileType rust nmap <leader>t :!cargo test<cr>
-au FileType rust nmap <leader>c :!RUST_BACKTRACE=1 cargo run<cr>
+au FileType rust nmap <leader>c :!RUST_BACKTRACE=1 RUST_LOG=debug cargo run<cr>
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " js
 let g:syntastic_javascript_checkers=[]

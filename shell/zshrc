@@ -48,6 +48,7 @@ export PATH=~/bin:~/.composer/vendor/bin:/usr/local/bin:/usr/local/sbin:/usr/bin
 export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin"
 export PATH="$HOME/.phpenv/bin:$PATH"
 export SSH_AUTH_SOCK=$HOME/.sekey/ssh-agent.ssh
+export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
 export EDITOR=/usr/local/bin/nvim
 
