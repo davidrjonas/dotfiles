@@ -1,0 +1,9 @@
+[user]
+	name = David Jonas
+	email = djonas@noip.com
+
+[includeIf "gitdir:~/Projects/github/"]
+	path = davidrjonas.config
+
+[includeIf "gitdir:~/Projects/go/src/github.com/davidrjonas/"]
+	path = davidrjonas.config
