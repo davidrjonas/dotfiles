@@ -194,8 +194,10 @@ au FileType clojure nmap <Leader>r K<cr>
 
 " rust
 let g:rustfmt_autosave = 1
+au FileType rust set makeprg=cargo\ build\ -j\ 4
 au FileType rust nmap <leader>t :!cargo test<cr>
-au FileType rust nmap <leader>c :!RUST_BACKTRACE=1 RUST_LOG=debug cargo run<cr>
+au FileType rust nmap <leader>r :!RUST_BACKTRACE=1 cargo run<cr>
+au FileType rust nmap <leader>c :term cargo build -j 4<cr>
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
