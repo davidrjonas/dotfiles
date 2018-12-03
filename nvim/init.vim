@@ -13,7 +13,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dietsche/vim-lastplace'
 Plug 'jiangmiao/auto-pairs'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+" https://github.com/w0rp/ale
+Plug 'w0rp/ale'
 Plug 'vim-scripts/yaifa.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mhinz/vim-signify'
@@ -44,6 +46,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make'}
+Plug 'GutenYe/json5.vim', { 'for': 'json5' }
 "Plug 'derekwyatt/vim-scala'
 "Plug 'zah/nimrod.vim'
 Plug 'flazz/vim-colorschemes'
@@ -70,10 +73,17 @@ colorscheme badwolf
 let g:airline_theme = 'molokai'
 let g:airline_powerline_fonts = 1
 "let g:tagbar_autofocus = 1
+let g:airline#extensions#ale#enabled = 1
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#input_patterns = {}
+let g:deoplete#num_processes = 1
 au CompleteDone * pclose!
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 let g:UltiSnipsSnippetDirectories = [$HOME.'/Documents/dotfiles/UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -127,6 +137,7 @@ xnoremap <Leader>s <esc>:'<,'>:w !gpg --armor --clearsign<CR>
 nnoremap <Leader>s :w !gpg --armor --clearsign<CR>
 xnoremap <Leader>ge <esc>:'<,'>:w !gpg --encrypt --sign --armor --output -<CR>
 nnoremap <Leader>ge :w !gpg --encrypt --sign --armor --output -<CR>
+nnoremap <Leader>n :lne<CR>
 
 iabbrev teh the
 
@@ -194,6 +205,8 @@ au FileType clojure nmap <Leader>r K<cr>
 
 " rust
 let g:rustfmt_autosave = 1
+let g:syntastic_rust_checkers = ['cargo']
+let g:racer_experimental_completer = 1
 au FileType rust set makeprg=cargo\ build\ -j\ 4
 au FileType rust nmap <leader>t :!cargo test<cr>
 au FileType rust nmap <leader>r :!RUST_BACKTRACE=1 cargo run<cr>
