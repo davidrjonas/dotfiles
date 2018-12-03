@@ -58,21 +58,21 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>520 561 400 129 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>970 786 620 392 0 0 2560 1440 </string>
+	<string>410 381 620 392 0 0 1440 900 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>270 204 599 404 0 0 2560 1417 </string>
+	<string>115 93 606 469 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>872 758 918 512 0 0 2560 1417 </string>
+	<string>318 349 796 473 0 0 1440 900 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
-	<string>99 293 592 584 0 0 1440 877 </string>
+	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1081 20 1440 877 0 0 2560 1417 </string>
+	<string>426 395 650 477 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 407 901 470 0 0 1440 877 </string>
+	<string>511 518 650 477 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>833 760 1186 657 0 0 2560 1417 </string>
+	<string>154 400 650 477 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 238 826 1179 0 0 2560 1417 </string>
+	<string>0 400 650 477 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1919,9 +1919,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-01-16T16:16:34Z</date>
+	<date>2018-08-17T01:28:07Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SuppressRestartAnnouncement</key>
+	<true/>
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabViewType</key>
@@ -1931,7 +1933,7 @@
 		<string>Profiles</string>
 	</array>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1515217792</real>
+	<real>1529345920</real>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
@@ -1941,6 +1943,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5</string>
+	<string>3.2.0</string>
 </dict>
 </plist>
