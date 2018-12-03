@@ -5,3 +5,5 @@
 /nvim/autoload/plug.vim
 /nvim/plugged
 /nvim/.*
+/inkscape
+/gcloud
