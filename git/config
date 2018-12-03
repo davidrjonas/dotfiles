@@ -7,3 +7,5 @@
 
 [includeIf "gitdir:~/Projects/go/src/github.com/davidrjonas/"]
 	path = davidrjonas.config
+[core]
+	excludesfile = /Users/djonas/.config/git/gitignore
