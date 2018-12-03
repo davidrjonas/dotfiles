@@ -64,16 +64,16 @@
         },
         {
             "name": "davidrjonas/composer-lock-diff",
-            "version": "1.1.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidrjonas/composer-lock-diff.git",
-                "reference": "3c9467fa51bdd330aacb567c430f7edee43abfbb"
+                "reference": "8b234546b99609906a3eab4cbd43e1b21acf52e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidrjonas/composer-lock-diff/zipball/3c9467fa51bdd330aacb567c430f7edee43abfbb",
-                "reference": "3c9467fa51bdd330aacb567c430f7edee43abfbb",
+                "url": "https://api.github.com/repos/davidrjonas/composer-lock-diff/zipball/8b234546b99609906a3eab4cbd43e1b21acf52e0",
+                "reference": "8b234546b99609906a3eab4cbd43e1b21acf52e0",
                 "shasum": ""
             },
             "bin": [
@@ -96,7 +96,7 @@
                 }
             ],
             "description": "See what has changed after a composer update.",
-            "time": "2017-06-27T19:46:01+00:00"
+            "time": "2018-02-19T07:10:49+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
