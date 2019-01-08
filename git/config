@@ -9,3 +9,5 @@
 	path = davidrjonas.config
 [core]
 	excludesfile = /Users/djonas/.config/git/gitignore
+[alias]
+	mergelog = !git log --oneline --no-merges "$1^".."$1"
