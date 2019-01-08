@@ -36,6 +36,7 @@ alias gds='git diff --cached'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git docker zsh-syntax-highlighting ssh-agent kubectl kops)
+plugins+=(terraform)
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 # zstyle :omz:plugins:ssh-agent lifetime 6h
@@ -89,3 +90,6 @@ alias ka="kubectl apply -f"
 alias icatr="kitty +kitten icat"
 alias icat="icatr --align right --place \$(tput cols)x\$(((\$(tput lines) - 10)))@0x0"
 alias scoot="icat ~/Pictures/1016091707.jpg"
+alias tp="terraform plan -out=plan.out"
+
+alias dvm="docker run -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh"
