@@ -67,6 +67,8 @@ set list
 set mouse=
 set listchars=tab:▸\ ,eol:\ 
 set noeb vb t_vb=
+set foldmethod=syntax
+set foldlevelstart=20
 
 colorscheme badwolf
 
