@@ -4,6 +4,8 @@
 call plug#begin()
 
 Plug 'sjl/badwolf'
+Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
@@ -13,21 +15,30 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dietsche/vim-lastplace'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'scrooloose/syntastic'
-" https://github.com/w0rp/ale
 Plug 'w0rp/ale'
 Plug 'vim-scripts/yaifa.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mhinz/vim-signify'
 Plug 'SirVer/UltiSnips' | Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
-Plug 'kien/ctrlp.vim'
-Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc', {'do' : 'make'}
 Plug 'vimwiki/vimwiki'
-Plug 'fntlnz/atags.vim'
-Plug 'godlygeek/tabular'
+"Plug 'fntlnz/atags.vim'
 "Plug 'joonty/vdebug.git'
+" 20190220 https://bluz71.github.io/2017/05/21/vim-plugins-i-like.html
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+" gl=
+Plug 'tommcdo/vim-lion'
+Plug 'wellle/targets.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'chaoren/vim-wordmotion'
+Plug 'Yggdroot/indentLine'
+" gc
+Plug 'tpope/vim-commentary'
+" To try:
+" Plug 'janko-m/vim-test'
+" Plug '907th/vim-auto-save' (at least with vimwiki)
 
 " == languages ==
 "Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
@@ -49,7 +60,6 @@ Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make'}
 Plug 'GutenYe/json5.vim', { 'for': 'json5' }
 "Plug 'derekwyatt/vim-scala'
 "Plug 'zah/nimrod.vim'
-Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
@@ -70,12 +80,23 @@ set noeb vb t_vb=
 set foldmethod=syntax
 set foldlevelstart=20
 
+set background=dark
+"let g:solarized_contrast="high"
+"colorscheme solarized
 colorscheme badwolf
 
-let g:airline_theme = 'molokai'
+if g:colors_name == "solarized"
+    highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
+    let g:airline_theme = 'solarized'
+else
+    let g:airline_theme = 'molokai'
+endif
+
 let g:airline_powerline_fonts = 1
 "let g:tagbar_autofocus = 1
 let g:airline#extensions#ale#enabled = 1
+
+let g:lion_squeeze_spaces = 1
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#input_patterns = {}
@@ -96,8 +117,7 @@ highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
 highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
 highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
 
-" highlight signs in Sy
-
+" highlight signs in Signify
 highlight SignifySignAdd    cterm=bold ctermbg=237 ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237 ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
@@ -125,6 +145,8 @@ imap <C-h> <C-d>
 
 let mapleader = ","
 
+nnoremap <silent> <leader><Space> :FZF<cr>
+nnoremap <silent> <leader>L :IndentLinesToggle<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <Leader>x :%s/\s\+$//g<cr>
 nnoremap <Leader>f gqis
@@ -217,6 +239,7 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+au FileType rust nmap <leader>e :term cargo +nightly rustc --bins -- -Z unstable-options --pretty=expanded<cr>
 
 " js
 let g:syntastic_javascript_checkers=[]
