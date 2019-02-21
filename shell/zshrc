@@ -86,10 +86,12 @@ alias ks="kubectl -n kube-system"
 alias kw="kubectl get events --watch"
 alias kga="kubectl get all"
 alias ka="kubectl apply -f"
+alias ktok="kubectl -n kube-system get secret -o json | jq -Mr '.items[] | select(.metadata.name | startswith(\"admin-user-token\")) | .data.token' | base64 -D | pbcopy"
 
 alias icatr="kitty +kitten icat"
 alias icat="icatr --align right --place \$(tput cols)x\$(((\$(tput lines) - 10)))@0x0"
 alias scoot="icat ~/Pictures/1016091707.jpg"
 alias tp="terraform plan -out=plan.out"
+alias ta="terraform apply plan.out"
 
 alias dvm="docker run -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh"
