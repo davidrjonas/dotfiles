@@ -95,3 +95,9 @@ alias tp="terraform plan -out=plan.out"
 alias ta="terraform apply plan.out"
 
 alias dvm="docker run -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh"
+
+alias kcurl="kubectl run shell --image=appropriate/curl -it --rm --restart=Never --"
+alias kbash="kubectl run shell --image=debian:stretch -it --rm --restart=Never -- bash"
+
+eval "$(direnv hook zsh)"
+
