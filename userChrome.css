@@ -1,0 +1,40 @@
+
+/*** Private window black url bar ***/
+
+#main-window[privatebrowsingmode="temporary"] #urlbar {
+  background: black !important;
+  color: white !important;
+}
+
+/***
+ *** Hide tabs
+ *** https://github.com/Timvde/UserChrome-Tweaks/blob/master/tabs/hide-tabs-macos.css
+ ***/
+
+#TabsToolbar {
+  visibility: collapse;
+}
+
+/* Position window controls */
+.titlebar-buttonbox-container {
+  position: absolute;
+  visibility: visible;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+/*
+ * Make room for window controls and a bit of extra space for window drag/move.
+ * Only apply this style when not in fullscreen mode.
+ */
+#main-window:not([inFullscreen]) #nav-bar{
+  padding: 0px 5px 0px 90px !important;
+}
+
+/***
+ *** Sidebar
+ ***/
+
+#sidebar-header {
+  visibility: collapse;
+}
