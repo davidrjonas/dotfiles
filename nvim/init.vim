@@ -3,6 +3,8 @@
 " PlugInstall PlugUpdate
 call plug#begin()
 
+let g:ale_completion_enabled = 1
+
 Plug 'sjl/badwolf'
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
@@ -11,6 +13,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+" abolish will convert between snake_case (crs), StudlyCaps (crm), cameCase
+" (crc), UPPER_CASE (cru), kebab-case (cr-), dot.case (cr.), space case
+" (cr<space>), Title Case (crt)
+Plug 'tpope/vim-abolish'                            " https://github.com/tpope/vim-abolish
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dietsche/vim-lastplace'
@@ -30,11 +36,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 " gl=
 Plug 'tommcdo/vim-lion'
-Plug 'wellle/targets.vim'
+Plug 'wellle/targets.vim'                   "https://github.com/wellle/targets.vim
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'chaoren/vim-wordmotion'
-Plug 'Yggdroot/indentLine'
-" gc
+Plug 'chaoren/vim-wordmotion'               "https://github.com/chaoren/vim-wordmotion
+" indentLine is cool but sets conceallevel=2 which is super annoying.
+" Doesn't work without.
+"Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 " To try:
 " Plug 'janko-m/vim-test'
@@ -79,6 +86,7 @@ set listchars=tab:▸\ ,eol:\
 set noeb vb t_vb=
 set foldmethod=syntax
 set foldlevelstart=20
+set conceallevel=0
 
 set background=dark
 "let g:solarized_contrast="high"
@@ -98,20 +106,26 @@ let g:airline#extensions#ale#enabled = 1
 
 let g:lion_squeeze_spaces = 1
 
+" set completeopt+=preview
+" set completeopt+=noselect,noinsert,menu,menuone
+" set shortmess+=c
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#num_processes = 1
 au CompleteDone * pclose!
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 let g:UltiSnipsSnippetDirectories = [$HOME.'/Documents/dotfiles/UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+let g:wordmotion_spaces = '_-.'
 
 highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
 highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
@@ -146,8 +160,8 @@ imap <C-h> <C-d>
 let mapleader = ","
 
 nnoremap <silent> <leader><Space> :FZF<cr>
-nnoremap <silent> <leader>L :IndentLinesToggle<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>e :e $MYVIMRC<cr>
 nnoremap <Leader>x :%s/\s\+$//g<cr>
 nnoremap <Leader>f gqis
 nnoremap <Leader>b :b#<cr>
@@ -202,15 +216,16 @@ augroup phpSyntaxOverride
   autocmd!
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
-au FileType php let g:atags_build_commands_list = [
-    \ 'ag --php -g "" | ctags -L - --fields=+l -f tags.tmp',
-    \ 'awk "length($0) < 400" tags.tmp > tags',
-    \ 'rm -f tags.tmp'
-    \ ]
-augroup phpGenTags
-  autocmd!
-  autocmd FileType php au BufWritePost * call atags#generate()
-augroup END
+
+" au FileType php let g:atags_build_commands_list = [
+"     \ 'ag --php -g "" | ctags -L - --fields=+l -f tags.tmp',
+"     \ 'awk "length($0) < 400" tags.tmp > tags',
+"     \ 'rm -f tags.tmp'
+"     \ ]
+" augroup phpGenTags
+"   autocmd!
+"   autocmd FileType php au BufWritePost * call atags#generate()
+" augroup END
 
 " go
 let g:go_fmt_fail_silently = 1
@@ -239,17 +254,19 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
-au FileType rust nmap <leader>e :term cargo +nightly rustc --bins -- -Z unstable-options --pretty=expanded<cr>
+au FileType rust nmap <leader>em :term cargo +nightly rustc --bins -- -Z unstable-options --pretty=expanded<cr>
 
 " js
-let g:syntastic_javascript_checkers=[]
+"au FileType javascript set conceallevel=0
+"let g:syntastic_javascript_checkers=[]
 "let g:syntastic_javascript_checkers=['jslint']
 
 " markdown
 au FileType markdown setlocal spell
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'php']
+let g:markdown_syntax_conceal = 0
 
 " yaml
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=0 expandtab
 
 "let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
