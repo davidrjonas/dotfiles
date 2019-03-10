@@ -2,10 +2,12 @@ bash
 colordiff
 ctags
 curl
+direnv
 docbook
 docbook-xsl
 emacs
 fd
+font-fira-code
 fontconfig
 git-secret
 gnupg
@@ -15,8 +17,8 @@ imagemagick
 jq
 kops
 kubernetes-cli
-kubesec
 kubernetes-helm
+kubesec
 kubeval
 lastpass-cli
 mosh
@@ -26,10 +28,14 @@ neomutt
 neovim
 nghttp2
 nmap
+packer
 pstree
 ripgrep
+slate
+stern
 terraform
 the_silver_searcher
+travis
 tunnelblick
 wireguard-go
 wireguard-tools
